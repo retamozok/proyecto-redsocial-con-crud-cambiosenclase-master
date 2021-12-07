@@ -1,0 +1,48 @@
+.bodyclase {
+    background-color: rgb(53, 219, 211);
+}
+
+
+.sub-ig {font-size: 50px;
+    color: rgb(148, 136, 255);
+    font-family: 'Oswald', sans-serif;
+    background-color: rgb(231, 39, 119);
+    text-shadow: 3px solid black;
+}
+
+.sub-tablero {font-size: 25px;
+    color: #000;
+    font-family: 'Oswald', sans-serif;
+    background-color: rgb(255, 168, 55);
+    text-align: center;
+}
+
+.borde-form {border: #000 1px solid;
+
+}
+
+.form-input {font-family:'Oswald', sans-serif;
+    size: 12px #000;
+    
+}
+
+
+.footer {background-color: #000;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    text-align: center;
+    color: #ffff;
+
+}
+
+.ocultar-formulario{
+    display: none;
+}
+
+.publicar-backg {
+    background-color: rgb(231, 39, 119);
+    font-size: 18px;
+    color: #000;
+    font-family: 'Oswald', sans-serif;
+
+}

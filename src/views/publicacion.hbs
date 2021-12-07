@@ -1,0 +1,78 @@
+ <div class="row dropdown justify-content-center">
+  <button class="btn dropdown-toggle publicar-backg" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    PUBLICAR
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li> <div class="row justify-content-center mb-3 mt-3">
+
+   <form class="borde-form col-4" action="/instagram" method="post" enctype="multipart/form-data">
+          <input class="col-12 mt-3 mb-3 form-input" type="text" name="nombre" placeholder="¿Un título? Escribe aquí"><br>
+          <textarea class="col-12 mt-3 mb-3 form-input" type="text" name="descripcion" placeholder="¿Una descripción? Escribe aquí"></textarea><br>
+          <input class="mb-2" type="file" name="url" accept="image/x-png,image/gif,image/jpeg">
+          <button class="col-12 mt-3 mb-3 sub-tablero" type="submit">Publicar en mi tablero</button>
+   </form>
+ 
+ </div>
+ 
+ 
+ <div class="row justify-content-around mt-3 mb-3">
+   
+  {{#each publicaciones }}
+      
+    <div class="col-5 col-sm-3 select-producto m-2 ms-0">
+
+        
+       <img src="./img/{{url}}" class="col-12 m-1 imagen-producto" alt="...">
+       <h5 class="titulo-producto">{{nombre}}</h5>
+       <p class="descripcion-produ">{{descripcion}}</p>
+       
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+             <i class="fas fa-cog"></i>
+          </button>
+        
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          
+          <li><form action="/instagram?_method=DELETE" method="post">
+             <input type="hidden" name="id" value={{id}}>
+             <button class="dropdown-item sub-tablero" type="submit">Eliminar</button>
+             </form>
+          </li>
+         
+    
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Más opciones
+                </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Inicio</a></li>
+
+          <li>  
+            <button class="dropdown-item sub-tablero"  href="#">Editar:</button>
+               <form class="ocultar-formulario"  action="/instagram?_method=PUT" method="post">
+                  <input type="hidden" name="id" value={{id}}>
+                  <label class="col-12 sub-tablero">Titulo</label>
+                  <textarea class="col-12" name="nombre">{{nombre}}</textarea> 
+                  <label class="col-12 sub-tablero">Descripción:</label>
+                  <textarea class="col-12" name="descripcion" placeholder="{{descripcion}}"></textarea>
+              <button class="sub-tablero" type="submit">Actualizar</button>
+                </form>                       
+          </li>
+        </ul>
+       </div>
+    </div>
+</li>
+    
+  </ul>
+</div>
+
+
+
+
+ 
+
+  {{/each}}
+
+ </div>
+
