@@ -3,7 +3,7 @@
     PUBLICAR
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li> <div class="row justify-content-center mb-3 mt-3">
+    <li> <div class="row justify-content-center mb-3 mt-3"></li>
 
    <form class="borde-form col-4" action="/instagram" method="post" enctype="multipart/form-data">
           <input class="col-12 mt-3 mb-3 form-input" type="text" name="nombre" placeholder="¿Un título? Escribe aquí"><br>
@@ -14,12 +14,11 @@
  
  </div>
  
- 
  <div class="row justify-content-around mt-3 mb-3">
    
   {{#each publicaciones }}
       
-    <div class="col-5 col-sm-3 select-producto m-2 ms-0">
+    <div class="col-5 col-sm-3 select-producto m-2 ms-0 fondo">
 
         
        <img src="./img/{{url}}" class="col-12 m-1 imagen-producto" alt="...">
@@ -65,14 +64,7 @@
 </li>
     
   </ul>
-</div>
-
-
-
-
- 
-
   {{/each}}
-
+</div>
  </div>
 

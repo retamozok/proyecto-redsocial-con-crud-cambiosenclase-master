@@ -1,27 +1,36 @@
+import Publicacion from '../models/publicaciones.js'
+
 let publicaciones = [
   
 ]
 
 export const viewpubli = (req,res)=>{
+
     res.status(200).render('publicacion',{publicaciones:publicaciones})
 }
 
 
 export const create = async (req,res)=>{
-  let publicacion = req.body
-  publicacion.id = Math.floor(Math.random()*1000000000)
-  console.log(publicacion)
-  publicaciones.push(req.body) 
-  publicacion.url = req.body.nombre + req.body.id + ".png" 
 
-  const EDFile = req.files.url
+  req.body.url = Math.floor(Math.random()*1000000000) + ".png" 
+
+  try {
+
+    const publicacion = await Publicacion(req.body)
+    publicacion.save()
+    const EDFile = req.files.url
+    
+    EDFile.mv(`./public/img/${publicacion.url}`,err => {
+      if(err) return res.status(500).send({ message : err })
+      return res.status(200).render("nofound",{message:"error al cargar"})
+      })
   
-  EDFile.mv(`./public/img/${publicacion.url}`,err => {
-    if(err) return res.status(500).send({ message : err })
-    return res.status(200).render("nofound",{message:"error al cargar"})
-    })
+    res.status(200).redirect('/instagram')
+  }catch(e){ console.log(e) }
 
-  res.status(200).redirect('/instagram')
+
+  
+  
  }
  
  export const del = (req,res) =>{

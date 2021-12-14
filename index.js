@@ -5,7 +5,7 @@ import path from 'path'
 import routesPublicaciones from './src/routes/routesPublicaciones.js'
 import methodOverride from 'method-override'
 import fileUpload from 'express-fileupload'
-
+import { conectarDB } from './config/db.js'
 
 const app = express()
 
@@ -33,7 +33,7 @@ app.engine("hbs", handlebars({
 app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'hbs');
 // servidor
-
+conectarDB()
 routesPublicaciones(app)
 
 
