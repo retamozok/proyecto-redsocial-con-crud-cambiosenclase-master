@@ -4,10 +4,21 @@ let publicaciones = [
   
 ]
 
-export const viewpubli = (req,res)=>{
 
-    res.status(200).render('publicacion',{publicaciones:publicaciones})
+
+
+export const viewpubli = async (req,res)=>{
+  try{
+    const posteos = await Publicacion.find().lean()
+    res.status(200).render('publicacion',{publicaciones:posteos})
+  }catch(e){
+    console.log(e)
+  }
+    
 }
+
+
+
 
 
 export const create = async (req,res)=>{
@@ -26,28 +37,49 @@ export const create = async (req,res)=>{
       })
   
     res.status(200).redirect('/instagram')
-  }catch(e){ console.log(e) }
+  }
+  catch (e) {console.log(e)}
 
-
-  
   
  }
- 
- export const del = (req,res) =>{
-  console.log(req.body)
-  publicaciones = publicaciones.filter(element => element.id != req.body.id)
-  res.status(200).redirect('/instagram')
+
+
+
+
+
+ export const del = async (req,res) =>{
+  try {
+    const productfound = await Publicacion.find({_id:req.body._id}).lean()
+    if ((Object.entries (productfound).length === 0)) {
+      return res.status(200).render("nofound"),{message: "no se encontró la publicación"}
+      }
+
+      await Publicacion.deleteOne({_id:req.body._id})
+        res.status(200).redirect('/instagram')
+
+}
+
+catch (e) {console.log(e)}
+
 }
 
 
-export const update = (req,res) =>{
-  console.log(req.body)
-  let publicacion = publicaciones.find(element => element.id == req.body.id)
-  if(req.body.nombre)  publicacion.nombre = req.body.nombre
-  if(req.body.descripcion) publicacion.descripcion = req.body.descripcion
-  res.status(200).redirect('/instagram')
+export const update = async (req,res) =>{
+  
+try {
+  const productfound = await Publicacion.find({_id:req.body._id}).lean()
+      if ((Object.entries(productfound).length === 0)) {
+        return res.status(200).render("nofound",{message:"no se encontro el posteo"})
+      }
+  await Publicacion.findOneAndUpdate(
+    { _id: req.body._id },
+    { $set: product},
+    { new: true }
+  )
+  
+} 
+catch (e) { console.log(e)}
+
 }
-
-
   
  
